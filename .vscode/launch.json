@@ -12,8 +12,8 @@
       "program": "${file}",
       "env": {},
       "args": [
-        "--amount",
-        "4.73"
+        "--budget",
+        "200"
       ]
     },
     {
