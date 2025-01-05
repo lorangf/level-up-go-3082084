@@ -23,7 +23,23 @@ var coins = []coin{
 
 // calculateChange returns the coins required to calculate the
 func calculateChange(amount float64) map[coin]int {
-	panic("NOT IMPLEMENTED")
+	change := make(map[coin]int)
+
+	for _, c := range coins {
+		if amount <= 0.0 {
+			break
+		}
+		v := c.value
+		for amount > 0.0 {
+			if amount-v < 0.0 {
+				break
+			}
+			change[c] = change[c] + 1
+			amount = amount - v
+		}
+	}
+
+	return change
 }
 
 // printCoins prints all the coins in the slice to the terminal.
