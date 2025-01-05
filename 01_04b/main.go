@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"math"
 )
 
 // coin contains the name and value of a coin
@@ -26,16 +27,10 @@ func calculateChange(amount float64) map[coin]int {
 	change := make(map[coin]int)
 
 	for _, c := range coins {
-		if amount <= 0.0 {
-			break
-		}
-		v := c.value
-		for amount > 0.0 {
-			if amount-v < 0.0 {
-				break
-			}
-			change[c] = change[c] + 1
-			amount = amount - v
+		if amount >= c.value {
+			count := math.Floor(amount / c.value)
+			change[c] = int(count)
+			amount = amount - count*c.value
 		}
 	}
 
